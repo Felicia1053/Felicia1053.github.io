@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>曾珮珊（Felicia）的線上履歷 | 學習歷程與專案作品集</title>
+    <meta name="description" content="資訊管理系學生曾珮珊的學習歷程、專案作品與校園經歷，含各專案的反思與下次改進方向。">
+    <style>
+        /* ================= 基礎全站設定 ================= */
+        body {
+            font-family: 'Segoe UI', 'Microsoft JhengHei', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* ================= 導覽列 ================= */
+        nav {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        nav a:hover {
+            background-color: #34495e;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* ================= 個人介紹區塊 (新版排版) ================= */
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            margin-top: 30px;
+            margin-bottom: 40px;
+            text-align: center;
+            gap: 30px;
+        }
+        
+        /* 手機版照片設定 */
+        .profile-img {
+            width: 100%;
+            max-width: 320px;
+            aspect-ratio: 1 / 1; /* 手機版維持正方形 */
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            flex-shrink: 0;
+        }
+
+        /* 電腦版雙欄滿版設定 */
+        @media(min-width: 850px) {
+            .hero-section {
+                flex-direction: row; /* 左右並排 */
+                text-align: left;
+                align-items: center; /* 垂直置中 */
+                padding: 60px;
+                gap: 60px;
+            }
+            .profile-img {
+                max-width: 42%; /* 左側佔據 42% 寬度 */
+                aspect-ratio: 3 / 4; /* 電腦版改為更專業的 3:4 肖像比例 */
+                border-radius: 16px;
+            }
+            .bio-content {
+                flex: 1; /* 右側佔據剩餘空間 */
+            }
+        }
+
+        .bio-content h1 {
+            margin-top: 0;
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        .bio-content p {
+            font-size: 1.15rem;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        /* ================= 技能標籤雲 ================= */
+        .skills-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 50px;
+        }
+        .skills-section h3 {
+            margin-top: 0;
+            color: #2c3e50;
+            font-size: 1.4rem;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        .skill-group {
+            margin-bottom: 20px;
+        }
+        .skill-group:last-child {
+            margin-bottom: 0;
+        }
+        .skill-category-title {
+            font-size: 1rem;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .skill-tag {
+            background: #f1f2f6;
+            color: #2c3e50;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 1px solid #dfe4ea;
+            cursor: default;
+        }
+        .skill-tag:hover {
+            background: #8e44ad;
+            color: white;
+            border-color: #8e44ad;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(142, 68, 173, 0.2);
+        }
+
+        /* ================= 區塊標題 ================= */
+        .section-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            border-left: 5px solid #8e44ad;
+            padding-left: 15px;
+            margin-top: 50px;
+            margin-bottom: 30px;
+            scroll-margin-top: 70px
+        }
+
+        /* ================= 作品卡片設計 ================= */
+        .case-study-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 40px;
+        }
+        @media(min-width: 900px) {
+            .case-study-card {
+                flex-direction: row;
+            }
+        }
+
+        .card-visual {
+            flex: 1.2;
+            background-color: #f1f2f6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border-right: 1px solid #eee;
+            gap: 20px;
+        }
+        .card-visual img, .card-visual video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .clickable-img {
+            cursor: zoom-in;
+        }
+        
+        .image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            width: 100%;
+        }
+        .image-grid img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            cursor: zoom-in;
+            transition: transform 0.3s ease;
+        }
+        .image-grid img:hover {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            flex: 1.5;
+            padding: 30px;
+        }
+        .project-title {
+            margin-top: 0;
+            font-size: 1.5rem;
+            color: #2c3e50;
+        }
+        .tech-tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .tag {
+            background-color: #e8eaed;
+            color: #5f6368;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        .feature-list {
+            padding-left: 20px;
+            margin-bottom: 25px;
+        }
+        .feature-list li {
+            margin-bottom: 10px;
+        }
+        
+        /* 程式碼展示區塊 */
+        .code-snippet {
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            margin-top: 15px;
+        }
+        .code-title {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        /* ================= 圖片放大 Modal (Lightbox) ================= */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 2000; 
+            padding-top: 60px; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0,0,0,0.85); 
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 8px;
+            animation: zoom 0.3s;
+        }
+        @keyframes zoom {
+            from {transform:scale(0.8)} 
+            to {transform:scale(1)}
+        }
+        .close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        #caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 15px 0;
+            font-size: 1.2rem;
+        }
+
+        /* ================= 學習歷程與榮譽 ================= */
+        html { scroll-behavior: smooth; }
+        .badge-row { display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+        .badge { background:#f4ecf8; color:#8e44ad; border:1px solid #e0cdea; padding:6px 14px; border-radius:20px; font-size:.9rem; font-weight:bold; }
+        .stats-strip { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:15px; margin-bottom:30px; }
+        .stat { background:white; border-radius:12px; padding:22px 10px; text-align:center; box-shadow:0 4px 15px rgba(0,0,0,.05); border-top:4px solid #8e44ad; }
+        .stat b { display:block; font-size:2.2rem; color:#8e44ad; line-height:1.2; }
+        .stat span { color:#7f8c8d; font-size:.9rem; font-weight:bold; }
+        .exp-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px; margin-bottom:30px; }
+        .exp-card { background:white; border-radius:12px; padding:25px; box-shadow:0 4px 15px rgba(0,0,0,.05); border-left:5px solid #8e44ad; transition:transform .25s, box-shadow .25s; }
+        .exp-card:hover { transform:translateY(-4px); box-shadow:0 8px 22px rgba(142,68,173,.15); }
+        .exp-card h3 { margin:8px 0 10px; font-size:1.25rem; color:#2c3e50; }
+        .exp-card p { margin:0 0 10px; color:#555; }
+        .exp-card ul { margin:0; padding-left:20px; color:#555; }
+        .exp-card li { margin-bottom:6px; }
+        .period { display:inline-block; background:#2c3e50; color:white; font-size:.8rem; font-weight:bold; padding:3px 12px; border-radius:20px; }
+        .honor-card { background:linear-gradient(135deg,#8e44ad,#6c3483); color:white; border-radius:12px; padding:30px; box-shadow:0 8px 25px rgba(142,68,173,.25); }
+        .honor-card h3 { margin:0 0 8px; font-size:1.4rem; }
+        .honor-card p { margin:0 0 18px; opacity:.92; }
+        .honor-chips { display:flex; flex-wrap:wrap; gap:12px; }
+        .honor-chips span { background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.4); padding:8px 20px; border-radius:25px; font-weight:bold; }
+        @media(max-width:600px){ nav{gap:6px;padding:.6rem 1rem;} nav a{padding:6px 10px;font-size:.9rem;} }
+        details.more { margin-top:18px; border:1px solid #e0cdea; border-radius:10px; background:#faf6fc; }
+        details.more summary { cursor:pointer; padding:12px 18px; font-weight:bold; color:#8e44ad; list-style:none; }
+        details.more summary::-webkit-details-marker { display:none; }
+        details.more summary::after { content:"＋"; float:right; }
+        details.more[open] summary::after { content:"－"; }
+        details.more[open] summary { border-bottom:1px solid #e0cdea; }
+        .more-body { padding:6px 18px 14px; }
+        .more-body h4 { margin:14px 0 4px; color:#2c3e50; font-size:1rem; }
+        .more-body h4::before { content:""; display:inline-block; width:8px; height:8px; background:#8e44ad; border-radius:50%; margin-right:8px; }
+        .more-body p { margin:0; color:#555; }
+
+
+        /* ===== v3：精簡卡片、原始碼區、側邊時間軸、頁尾 ===== */
+        .result { background:#f4ecf8; border-left:4px solid #8e44ad; padding:10px 14px; border-radius:6px; margin:0; color:#2c3e50; font-weight:bold; }
+        .more-body { padding:4px 0 0; }
+        .more-body > p:first-child { margin-top:8px; }
+        .more-body ul { margin:8px 0 0; }
+        .todo { background:#fff3cd; color:#8a6d3b; padding:2px 8px; border-radius:4px; }
+        .code-box { margin-top:18px; border:1px dashed #b9a0c9; border-radius:10px; padding:14px 18px; background:#fff; }
+        .btn { display:inline-block; background:#8e44ad; color:#fff; padding:6px 16px; border-radius:20px; text-decoration:none; font-weight:bold; font-size:.9rem; margin-top:8px; }
+        .more-body details.tutorial { border:none; background:none; margin-top:10px; }
+        .more-body details.tutorial summary { padding:4px 0; border-bottom:none; color:#8e44ad; }
+        .more-body details.tutorial summary::after { content:""; }
+        .more-body details.tutorial ol { margin:8px 0 0; padding-left:20px; color:#555; }
+        .pdf-link { display:block; align-self:stretch; text-align:center; padding:8px; background:#2c3e50; color:#fff; text-decoration:none; font-size:.85rem; }
+        .toolbar { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin:30px 0 -10px; color:#7f8c8d; font-size:.9rem; }
+        .toolbar span { flex:1 1 260px; }
+        .toolbar button { background:#fff; color:#8e44ad; border:1px solid #8e44ad; border-radius:20px; padding:6px 16px; font-weight:bold; cursor:pointer; }
+        .toolbar button:hover { background:#8e44ad; color:#fff; }
+        nav a.active { background:#8e44ad; }
+        a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid #b57edc; outline-offset:2px; }
+        footer { background:#2c3e50; color:#ecf0f1; text-align:center; padding:50px 20px 30px; margin-top:40px; }
+        footer h2 { margin:0 0 10px; }
+        .contact-links { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin:20px 0; }
+        .contact-links a { color:#fff; background:#34495e; padding:8px 18px; border-radius:25px; text-decoration:none; font-weight:bold; }
+        .contact-links a:hover { background:#8e44ad; }
+        footer small { color:#95a5a6; }
+        @media(min-width:900px){
+            body { padding-right:140px; }
+            footer { margin-right:-140px; }
+            nav#sidenav { position:fixed; top:50%; right:18px; transform:translateY(-50%); flex-direction:column; align-items:flex-end; gap:0; background:transparent; box-shadow:none; padding:0; }
+            nav#sidenav::before { content:""; position:absolute; right:4px; top:14px; bottom:14px; width:2px; background:#d5d9de; }
+            nav#sidenav a { color:#7f8c8d; background:none; border-radius:0; padding:8px 24px 8px 8px; font-size:.85rem; position:relative; }
+            nav#sidenav a::after { content:""; position:absolute; right:0; top:50%; width:10px; height:10px; margin-top:-5px; border-radius:50%; background:#fff; border:2px solid #b9bec5; }
+            nav#sidenav a:hover { color:#8e44ad; }
+            nav#sidenav a.active { color:#8e44ad; font-size:.95rem; }
+            nav#sidenav a.active::after { background:#8e44ad; border-color:#8e44ad; box-shadow:0 0 0 4px rgba(142,68,173,.2); }
+        }
+        .reflect-box { margin-top:18px; background:#faf6fc; border:1px solid #e0cdea; border-left:5px solid #8e44ad; border-radius:10px; padding:14px 20px; }
+        .reflect-box p { margin:0 0 10px; color:#555; }
+        .reflect-box p:last-child { margin-bottom:0; }
+        .reflect-box strong { color:#8e44ad; }
+    </style>
+</head>
+<body id="top">
+
+    <!-- 導覽列 -->
+    <nav id="sidenav" aria-label="頁面導覽">
+        <a href="#top" data-t="top">Top</a>
+        <a href="#about" data-t="about">關於我</a>
+        <a href="#experience" data-t="experience">學習歷程</a>
+        <a href="#software" data-t="software">軟體開發</a>
+        <a href="#data-ai" data-t="data-ai">資料分析</a>
+        <a href="#design" data-t="design">企劃設計</a>
+        <a href="#leadership" data-t="leadership">協作社群</a>
+        <a href="#contact" data-t="bottom">Bottom</a>
+    </nav>
+
+    <div class="container">
+        <!-- ================= 關於我 (Hero Section) ================= -->
+        <section id="about" class="hero-section">
+            <img src="F1053.jpg" alt="個人照片" class="profile-img">
+            
+            <div class="bio-content">
+                <h1>您好，我是曾珮珊</h1>
+                <p>我是資訊管理系的學生，仍在持續學習。大學期間接觸了程式開發與資料分析，也在班級與系學會中練習溝通與協調。</p>
+                <p>這個網站整理了我做過的專案與校園經歷，也記錄做得不夠好的地方，以及下次我會怎麼改進。我還有許多需要加強之處，希望能在實習與工作中繼續學習。</p>
+                <div class="badge-row"><span class="badge">🏅 書卷獎</span><span class="badge">🎓 班代</span><span class="badge">📋 系學會執行秘書</span><span class="badge">🎨 手工藝術社</span></div>
+            </div>
+        </section>
+
+        <!-- ================= 核心技能標籤雲 ================= -->
+        <div class="skills-section">
+            <h3>核心技能與工具 (Skills & Expertise)</h3>
+            
+            <div class="skill-group">
+                <div class="skill-category-title">💻 軟體開發與技術</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">Java (Android Studio)</span>
+                    <span class="skill-tag">PHP</span>
+                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">MySQL / MariaDB</span>
+                    <span class="skill-tag">HTML / CSS / JavaScript</span>
+                    <span class="skill-tag">Git / GitHub</span>
+                    <span class="skill-tag">API 串接</span>
+                </div>
+            </div>
+
+            <div class="skill-group">
+                <div class="skill-category-title">📊 資料分析與應用</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">NLP (自然語言處理)</span>
+                    <span class="skill-tag">Weka (機器學習與分群)</span>
+                    <span class="skill-tag">Gephi (SNA 社會網絡分析)</span>
+                    <span class="skill-tag">數據視覺化</span>
+                    <span class="skill-tag">資料清理與預處理</span>
+                </div>
+            </div>
+
+            <div class="skill-group">
+                <div class="skill-category-title">💡 企劃、設計與跨領域軟實力</div>
+                <div class="skill-tags">
+                    <span class="skill-tag">專案管理</span>
+                    <span class="skill-tag">團隊協作與分工</span>
+                    <span class="skill-tag">商業提案與企劃撰寫</span>
+                    <span class="skill-tag">專案發表</span>
+                    <span class="skill-tag">創意思考</span>
+                    <span class="skill-tag">Audacity (多媒體後製)</span>
+                    <span class="skill-tag">跨部門溝通與協調</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= 學習歷程與榮譽 ================= -->
+        <h2 id="experience" class="section-title">學習歷程與校園經歷</h2>
+ 
+        <div class="honor-card" style="margin-bottom:30px;">
+            <h3>🏅 書卷獎</h3>
+            <p>在投入班級、系學會與多項專案的同時，維持穩定的學業表現。</p>
+            <div class="honor-chips"><span>一年級下學期</span><span>二年級上學期</span><span>二年級下學期</span></div>
+        </div>
+ 
+        <div class="exp-grid">
+            <div class="exp-card">
+                <span class="period">二下 ～ 三上</span>
+                <h3>班級代表（班代）</h3>
+                <p>擔任同學與系上、師長之間的溝通橋樑。</p>
+                <ul>
+                    <li>上情下達系務與課務訊息，也把同學的意見整理後回報</li>
+                    <li>處理班級大小事，學會先傾聽再協調</li>
+                </ul>
+            </div>
+            <div class="exp-card">
+                <span class="period">系學會</span>
+                <h3>資管系學會 執行秘書</h3>
+                <p>負責系學會的行政運作與內部協調。</p>
+                <ul>
+                    <li>撰寫會議紀錄並追蹤決議事項</li>
+                    <li>參與特約商店洽談與對外公關講稿撰寫</li>
+                    <li>支援系員大會、二手書拍賣等活動</li>
+                </ul>
+            </div>
+            <div class="exp-card">
+                <span class="period">迎新活動</span>
+                <h3>六系聯合迎新・「船長密令」關主</h3>
+                <p>參與近 250 人規模的跨系迎新活動。</p>
+                <ul>
+                    <li>擔任闖關關主，引導新生團隊合作</li>
+                    <li>帶動現場氣氛，練習臨場應變與跨系協作</li>
+                </ul>
+            </div>
+            <div class="exp-card">
+                <span class="period">工讀</span>
+                <h3>資管系系辦工讀生</h3>
+                <p>協助系辦日常行政與庶務。</p>
+                <ul>
+                    <li>熟悉系辦流程與文書處理</li>
+                    <li>在工讀與課業之間練習時間管理</li>
+                </ul>
+            </div>
+            <div class="exp-card">
+                <span class="period">社團</span>
+                <h3>手工藝術社 社員</h3>
+                <p>以動手創作作為課業之外的平衡與充電。</p>
+                <ul>
+                    <li>在創作中培養耐心與專注</li>
+                    <li>認識不同科系的同學，拓展交友圈</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ================= 軟體與程式開發 ================= -->
+        <h2 id="software" class="section-title">軟體與程式開發</h2>
+
+        <!-- PHP 全端遊戲商店 -->
+        <div class="case-study-card">
+            <div class="card-visual">
+                <video src="phpFinal.mp4" loading="lazy" muted loop controls playsinline title="遊戲商店電商系統操作展示" style="width: 100%; border-radius: 8px;">
+                    您的瀏覽器不支援 HTML5 影片標籤。
+                </video>
+                <div class="image-grid">
+                    <img loading="lazy" decoding="async" src="php1.png" alt="PHP 圖片上傳與縮圖處理" onclick="openModal(this)">
+                    <img loading="lazy" decoding="async" src="php3.png" alt="Gmail API 寄信實作(電子賀卡)" onclick="openModal(this)">
+                    <img loading="lazy" decoding="async" src="php5.png" alt="HeidiSQL 資料庫設計" onclick="openModal(this)">
+                    <img loading="lazy" decoding="async" src="php4.png" alt="遊戲商店會員註冊與信件驗證測試" onclick="openModal(this)">
+                </div>
+                <a class="btn" href="https://github.com/Felicia1053/TEST261038/tree/main/game%20store%20">前往 GitHub📂</a>
+            </div>
+            <div class="card-content">
+                <h3 class="project-title">遊戲商店電商系統</h3>
+                <div class="tech-tags">
+                    <span class="tag">PHP</span>
+                    <span class="tag">MySQL (HeidiSQL)</span>
+                    <span class="tag">JavaScript</span>
+                    <span class="tag">Google API</span>
+                    <span class="tag">Git / GitHub</span>
+                </div>
+                <p class="result">✔ 完成含會員註冊驗證、購物車與結帳的遊戲商店，並串接 Gmail API 寄送驗證信。</p>
+                <div class="more-body">
+                <p><strong>專案概述：</strong><br>
+                在 Laragon 本機環境下，從零建置一個具備完整會員註冊、購物車與結帳功能的遊戲商店平台。專案涵蓋前端介面互動、後端 PHP 邏輯處理、資料庫結構設計，以及外部 API 串接。</p>
+                <p><strong>核心技術與解決方案：</strong></p>
+                <ul class="feature-list">
+                    <li><strong>後端邏輯與檔案處理：</strong> 實作 PHP 圖片上傳功能，並能自動產生縮圖 (`thumb_` 前綴) 以優化網頁載入速度。</li>
+                    <li><strong>關聯式資料庫設計：</strong> 使用 HeidiSQL 規劃 <code>final_carts</code>、<code>final_orders</code> 等資料表，並設定 Foreign Key 確保訂單與會員資料的完整性。</li>
+                    <li><strong>安全驗證與 API 串接：</strong> 整合 Google Cloud API 權限，實作 Gmail 發送系統。當使用者註冊時，系統會動態發送包含 Token 的帳號啟用確認信，作為帳號驗證的基本機制。</li>
+                    <li><strong>版本控制與協作：</strong> 運用 Git 進行版本控制，並建立分支 (Branch) 推送至 GitHub，學習分支與推送的基本流程。</li>
+                </ul><div class="reflect-box"><p><strong>個人經驗：</strong>第一次獨立串起前端、後端與資料庫，從畫面操作到寄信驗證都親手完成。</p>
+                    <p><strong>我學到的東西：</strong>後端邏輯、關聯式資料庫設計、API 授權流程，以及基本的版本控制。</p>
+                    <p><strong>我負責的部分：</strong>圖片上傳與縮圖處理、資料表與外鍵設計、Gmail API 驗證信流程、Git 分支與 GitHub 推送。</p>
+                    <p><strong>我的反思：</strong>初期資料表設計不夠周全，頁面間以超連結跳轉時也容易遺漏資料或修改不完全，後來回頭修改相當費工。</p>
+                    <p><strong>下次我會怎麼做：</strong>動工前先畫出 ER 圖並列出欄位與關聯，再開始寫程式；資料表的每次異動也用 SQL 檔與 Git 記錄下來。</p></div>
+            </div>
+                <p style="font-size: 0.85rem; color: #888;">* 展示影片與圖片皆可放大查閱。</p>
+            </div>
+        </div>
+
+        <!-- Android 選課系統 -->
+        <div class="case-study-card">
+            <div class="card-visual">
+                <img loading="lazy" decoding="async" src="app16.gif" alt="選課系統操作畫面展示" class="clickable-img" onclick="openModal(this)" 
+                style="max-width: 280px; width: 100%; height: auto;">
+                <a class="btn" href="https://github.com/Felicia1053/TEST261038/tree/main/app16">前往 GitHub📂</a>
+            </div>
+            <div class="card-content">
+                <h3 class="project-title">Android App實作 (以選課系統為例) </h3>
+                <div class="tech-tags">
+                    <span class="tag">Java</span>
+                    <span class="tag">Android Studio</span>
+                    <span class="tag">MariaDB (JDBC)</span>
+                    <span class="tag">UI/UX</span>
+                </div>
+                <p class="result">✔ 獨立完成連線 MariaDB 的選課 App，區分管理員與一般使用者權限。</p>
+                <div class="more-body">
+                <p><strong>專案概述：</strong><br>
+                獨立開發基於 Android 原生環境的校園選課應用程式。具備雙身分驗證機制，透過 JDBC 直接連線至 MariaDB 進行即時資料交換，提供課程查詢與管理功能。</p>
+                <p><strong>核心技術與解決方案：</strong></p>
+                <ul class="feature-list">
+                    <li><strong>RBAC 角色存取控制：</strong> 使用 <code>SharedPreferences</code> 管理登入狀態，動態驗證 Admin 屬性以開放「新增課程」與「使用者管理」等後台功能。</li>
+                    <li><strong>異步資料庫處理：</strong> 封裝 <code>MariaDB</code> 連線，嚴格運用 <code>ExecutorService</code> 於背景執行緒處理 SQL 查詢，防止主畫面卡頓 (ANR)。</li>
+                    <li><strong>直覺 UI/UX：</strong> 實作動態 ListView 與即時模糊查詢，以紫白配色設計介面，希望提升選課的操作體驗。</li>
+                </ul><div class="reflect-box">
+                    <p><strong>個人經驗：</strong>完整獨立做完一個 App，介面、邏輯與資料庫連線都靠自己摸索與除錯。過程中遇到本機同時安裝 MySQL 與 MariaDB，
+                        兩者預設都使用 3306 埠號而衝突；我釐清佔用埠號的服務後，將其中一個改用 3307，並同步修改 JDBC 連線字串。</p>
+                    <p><strong>我學到的東西：</strong>Android 開發流程、非同步處理、角色權限設計，以及閱讀錯誤訊息自行排查問題。</p>
+                    <p><strong>我負責的部分：</strong>全部功能獨立開發：登入與角色權限、SharedPreferences 登入狀態、ExecutorService 背景查詢、ListView 與模糊搜尋。</p>
+                    <p><strong>我的反思：</strong>畫面卡頓與連線錯誤讓我體會到，執行緒設計與環境設定都會直接影響使用者體驗。</p>
+                    <p><strong>下次我會怎麼做：</strong>一開始就把連線設定（host、port、帳密）集中在單一設定檔，並在連線失敗時顯示明確的錯誤提示，方便快速排查。</p>
+                </div></div>
+                <p style="font-size: 0.85rem; color: #888;">* 展示畫面以gif呈現。</p>
+            </div>
+        </div>
+
+
+        <!-- ================= 資料分析與應用 ================= -->
+        <h2 id="data-ai" class="section-title"> 資料分析與應用 </h2>
+
+        <!-- Python NLP 專案 -->
+        <div class="case-study-card">
+            <div class="card-visual">
+                <img loading="lazy" decoding="async" src="py1.png" alt="arXiv 學術論文關鍵字趨勢分析平台" class="clickable-img" onclick="openModal(this)">
+                <img loading="lazy" decoding="async" src="py2.png" alt="arXiv 學術論文關鍵字趨勢分析平台" class="clickable-img" onclick="openModal(this)">
+                <!-- ✨ 新增這段「實際試用」按鈕 ✨ -->
+                <a href="https://test261038git-fidglyya3lpgjeeeqjpihi.streamlit.app/" target="_blank" 
+                style="display: inline-block; background-color: #9154ab; color: white; padding: 8px 20px; border-radius: 25px; text-decoration: none; 
+                font-weight: bold; margin-bottom: 15px; transition: transform 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">點此試用
+                </a>
+                <a class="btn" href="https://github.com/Felicia1053/TEST261038/tree/main/arXiv">前往 GitHub📂</a>
+            </div>
+            <div class="card-content">
+                <h3 class="project-title">arXiv 學術論文趨勢探勘與視覺化平台</h3>
+                <div class="tech-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">NLP (NLTK)</span>
+                    <span class="tag">Streamlit</span>
+                    <span class="tag">Pandas</span>
+                    <span class="tag">API 串接</span>
+                </div>
+                <p class="result">✔ 部署可線上試用的 arXiv 論文趨勢網頁，提供常見研究片語與年度發文趨勢。</p>
+                <div class="more-body">
+
+                <p><strong>專案概述：</strong><br>基於 Streamlit 的互動式資料探勘網頁應用，能自動透過 arXiv API 抓取指定領域的最新學術論文，並運用自然語言處理 (NLP) 技術進行詞彙分析與趨勢視覺化，協助研究者快速掌握研究趨勢。</p>
+                <p><strong>核心技術與解決方案：</strong></p>
+                <ul class="feature-list">
+                    <li><strong>API 串接與資料解析：</strong> 利用 <code>requests</code> 與 <code>xml.etree.ElementTree</code> 即時抓取 arXiv API 回傳的 XML 結構，並過濾出標題與發表年份。</li>
+                    <li><strong>NLP 文本清理與 N-gram 萃取：</strong> 運用 <code>NLTK</code> 進行斷詞 (Tokenization)、詞形還原 (Lemmatization)，並提供客製化停用詞 (Stopwords) 過濾功能，萃取 Bigrams 與 Trigrams 的研究片語。</li>
+                    <li><strong>動態資料視覺化與洞察生成：</strong> 使用 <code>Pandas</code> 進行資料清洗與彙整，結合 Streamlit 原生圖表展示「Top 20 常見研究片語」與「年代發文趨勢」。
+                        更開發了自動趨勢分析邏輯，依據論文時間跨度與密度，系統會自動給予「高動能 (爆發期)」、「中動能 (穩定發展)」或「低動能 (冷門領域)」的具體研究建議。</li>
+                </ul><div class="reflect-box"><p><strong>個人經驗：</strong>起點是「找研究題目很耗時」，我想做一個能直接線上試用的工具。</p>
+                    <p><strong>我學到的東西：</strong>NLP 前處理流程、資料視覺化，以及用 Streamlit Cloud 與 GitHub 部署成可分享的網頁。</p>
+                    <p><strong>我負責的部分：</strong>API 資料抓取與 XML 解析、NLTK 文本清理與 N-gram 萃取、Pandas 彙整、Streamlit 圖表與趨勢判斷邏輯。</p>
+                    <p><strong>我的反思：</strong>停用詞的設定會明顯影響結果，分析結果需要人工判讀，不能全盤相信程式輸出。</p>
+                    <p><strong>下次我會怎麼做：</strong>先用小樣本比較不同停用詞設定，記錄參數與結果，並抽樣閱讀論文摘要交叉驗證後，再決定最終設定。</p></div>
+                    </div>
+                <p style="font-size: 0.85rem; color: #888; margin-top: 10px;">* 請點擊圖片放大檢視專案實作畫面。</p>
+            </div>
+        </div>
+
+        <!-- Gephi 專案 -->
+        <div class="case-study-card">
+            <div class="card-visual">
+                <div class="image-grid">
+                    <img loading="lazy" decoding="async" src="gephi1.png" alt="(1) 文學作品《散戲》角色關係網路圖" onclick="openModal(this)">
+                    <img loading="lazy" decoding="async" src="gephi2.png" alt="(1) 文學作品《散戲》角色情緒分析圖" onclick="openModal(this)">
+                    <img loading="lazy" decoding="async" src="gephi3.png" alt="(2) 二坪山校區Google評論關鍵字群聚圖" onclick="openModal(this)">
+                    <img loading="lazy" decoding="async" src="gephi4.png" alt="(2) 使用者的評論情緒節點分佈圖" onclick="openModal(this)">
+                </div>
+            </div>
+            <div class="card-content">
+                <h3 class="project-title">數位人文與輿情網路分析</h3>
+                <div class="tech-tags">
+                    <span class="tag">Gephi</span>
+                    <span class="tag">社會網絡分析 (SNA)</span>
+                    <span class="tag">資料預處理</span>
+                    <span class="tag">情緒分析</span>
+                </div>
+                <p class="result">✔ 完成兩份網絡分析：《散戲》角色關係，以及二坪山校區 Google 評論的關鍵字與情緒分佈。</p>
+                <div class="more-body">
+                <p><strong>專案概述：</strong><br>
+                運用 Gephi 進行文本的社會網絡分析，目前完成兩個主題：<br>(1) 透過角色網路圖解析文學作品《散戲》背後的理念衝突與妥協；<br>(2) 對聯大二坪山校區Google評論進行關鍵字萃取與情緒輿情觀測。</p>
+                <p><strong>核心技術與解決方案：</strong></p>
+                <ul class="feature-list">
+                    <li><strong>資料正規化：</strong> 獨立將非結構化的文字評論與情緒評分，轉化為標準的 <code>Nodes</code> 與 <code>Edges</code> CSV 關聯矩陣。</li>
+                    <li><strong>輿情特徵萃取：</strong> 提煉「住宿與設施」、「運動與休閒」等關鍵字，利用分群演算法找出社群討論的核心聚落。</li>
+                    <li><strong>情緒視覺化設計：</strong> 結合正面、負面、混合等情緒指標，以節點大小（討論熱度）與連線顏色（情感強烈度）賦予數據直觀的解讀價值。</li>
+                </ul><div class="reflect-box"><p><strong>個人經驗：</strong>同時處理文學與評論兩種性質不同的文本，體會到網絡分析可應用在不同領域。</p>
+                    <p><strong>我學到的東西：</strong>社會網絡分析的基本流程、情緒指標設計，以及用視覺化呈現資料。</p>
+                    <p><strong>我負責的部分：</strong>將文本與情緒評分整理成 Nodes／Edges CSV、萃取關鍵字、設計情緒指標與視覺呈現。</p>
+                    <p><strong>我的反思：</strong>資料預處理比製圖更耗時，卻決定圖能不能被看懂，過程中需要反覆修改資料。</p>
+                    <p><strong>下次我會怎麼做：</strong>一開始就訂好欄位格式與命名規則，並用 Python 腳本自動轉檔，減少手動編輯與反覆修改。</p>
+                </div>
+            </div>
+                <p style="font-size: 0.85rem; color: #888; margin-top: 10px;">* 圖片可點擊放大檢視。</p>
+            </div>
+        </div>
+
+        <!-- Weka 專案 -->
+        <div class="case-study-card">
+            <div class="card-visual">
+                <img loading="lazy" decoding="async" src="weka1.png" alt="Weka K-Means 分群結果" class="clickable-img" onclick="openModal(this)">
+            </div>
+            <div class="card-content">
+                <h3 class="project-title">銀行客戶特徵與市場策略分析</h3>
+                <div class="tech-tags">
+                    <span class="tag">Weka</span>
+                    <span class="tag">K-Means 集群法</span>
+                    <span class="tag">無監督式學習</span>
+                </div>
+                <p class="result">✔ 以 K-Means 將 600 筆銀行客戶分為 5 群，並提出對應的行銷建議。</p>
+                <div class="more-body">
+                <p><strong>專案概述：</strong><br>
+                在人工智慧概論課程中，運用 Weka 工具與 K-Means 演算法對 600 筆銀行客戶資料進行分群，藉由識別相似特徵客群，協助銀行提升行銷精準度與產品設計效益。</p>
+                <p><strong>核心技術與解決方案：</strong></p>
+                <ul class="feature-list">
+                    <li><strong>特徵工程與偏誤排除：</strong> 將 CSV 轉換為 ARFF 格式，並基於公平性考量移除 <code>sex</code>（性別）欄位，再重新評估 K 值。</li>
+                    <li><strong>最佳 K 值評估：</strong> 比較 k=2 至 k=6 的群內平方誤差總和 (WSS) 變化，並依手肘法判斷 <code>K=5</code> 較合理。</li>
+                    <li><strong>商業策略轉化：</strong> 將演算結果轉譯為 5 大實質客群（如：高資產中高齡、年輕投資族等），並針對性提出教育儲蓄與 VIP 財富傳承等對應行銷方案。</li>
+                </ul><div class="reflect-box"><p><strong>個人經驗：</strong>這是我第一次完整跑過一次機器學習的分群流程。</p>
+                    <p><strong>我學到的東西：</strong>K-Means 分群、手肘法與 K 值評估、特徵選擇，以及將分析結果轉成商業建議。</p>
+                    <p><strong>我負責的部分：</strong>CSV 轉 ARFF、基於公平性考量移除性別欄位並重新評估 K 值、依手肘法判斷 K 值，並將結果整理成客群行銷建議。</p>
+                    <p><strong>我的反思：</strong>分群結果要能轉譯成商業語言才有價值；此外，移除性別欄位前後的特徵數不同，WSS 不能直接拿來比較好壞。</p>
+                    <p><strong>下次我會怎麼做：</strong>以相同特徵集比較不同設定，並加入輪廓係數等指標輔助判斷 K 值，而不只看 WSS。</p>
+                </div>
+            </div>
+                <p style="font-size: 0.85rem; color: #888; margin-top: 10px;">* 圖片可點擊放大檢視。</p>
+            </div>
+        </div>
+
+
+        <!-- ================= 企劃、設計與跨領域 ================= -->
+        <h2 id="design" class="section-title">企劃、設計與跨領域軟實力</h2>
+
+        <!-- 社會企業專案 -->
+        <div class="case-study-card">
+            <div class="card-visual" style="padding: 0; overflow: hidden; background: #333;">
+                <iframe src="社會企業期末報告.pdf" loading="lazy" title="專案簡報 PDF" width="100%" height="450px" style="border: none; border-radius: 8px 0 0 8px;">
+                    您的瀏覽器不支援直接預覽，請下載檔案。
+                </iframe>
+                <a class="pdf-link" href="社會企業期末報告.pdf" target="_blank" rel="noopener">在新分頁開啟完整 PDF ↗</a>
+            </div>
+            <div class="card-content">
+                <h3 class="project-title">「暖心伴伴」銀髮族 AI 智慧手環社企企劃</h3>
+                <div class="tech-tags">
+                    <span class="tag">社會企業</span>
+                    <span class="tag">產品企劃</span>
+                    <span class="tag">永續發展 (SDGs)</span>
+                    <span class="tag">跨界合作提案</span>
+                </div>
+                <p class="result">✔ 完成「暖心伴伴」社企企劃，包含產品設計、營運架構與影響力評估。</p>
+                <div class="more-body">
+                <p><strong>專案概述：</strong><br>
+                針對台灣高齡化社會「孤獨與社交孤立」問題，策劃一家混合型社會企業「暖心伴伴」。提出結合 AI 語音輔助與情緒偵測的珠寶造型智慧手環，並設計對應的營運模式與影響力評估。</p>
+                <p><strong>核心貢獻與企劃亮點：</strong></p>
+                <ul class="feature-list">
+                    <li><strong>產品與服務設計：</strong> 負責規劃產品核心功能，將科技設備設計為珠寶造型。並提出「免費基礎版」與「進階訂閱制」的商業模式，涵蓋即時關懷熱線、吃藥提醒與異常警報功能。</li>
+                    <li><strong>混合型治理模式規劃：</strong> 負責設計組織營運架構，提出「公司+基金會」並行結構：以公司創造穩定現金流，基金會專注社區服務並接受公益資金，確保社企能自給自足並永續發展。</li>
+                    <li><strong>社會影響力與跨界資源評估：</strong> 制定投入產出評估表 (Impact Measurement)，並構想與台灣大哥大、微軟、全聯等企業在公益創投與硬體開發上的合作方向。</li>
+                </ul><div class="reflect-box"><p><strong>個人經驗：</strong>在社會關懷與商業可行性之間，學著找到能長久運作的平衡點。</p>
+                    <p><strong>我學到的東西：</strong>商業模式設計、社會影響力評估，以及跨界合作的提案方式。</p>
+                    <p><strong>我負責的部分：</strong>產品核心功能與珠寶造型構想、免費版與訂閱制模式、公司＋基金會架構、影響力評估表。</p>
+                    <p><strong>我的反思：</strong>社企不能只靠善意，也必須讓財務能自給自足；而我們的企劃多半停留在構想，缺少實際驗證。</p>
+                    <p><strong>下次我會怎麼做：</strong>企劃階段先用簡單試算驗證訂閱價格與成本，並訪談實際的長者與照顧者，確認需求後再設計功能。</p></div></div>
+                <p style="font-size: 0.85rem; color: #888; margin-top: 10px;">* PDF簡報可使用Acrobat展開檢視。</p>
+            </div>
+        </div>
+
+        <!-- 創意思考專案 -->
+        <div class="case-study-card">
+            <div class="card-visual" style="padding: 0; overflow: hidden; background: #333;">
+                <iframe src="創思F.pdf" loading="lazy" title="專案簡報 PDF" width="100%" height="450px" style="border: none; border-radius: 8px 0 0 8px;">
+                    您的瀏覽器不支援直接預覽，請 <a href="創思F.pptx" style="color:#3498db;">點此下載簡報檔 (創思F.pptx)</a>。
+                </iframe>
+                <a class="pdf-link" href="創思F.pdf" target="_blank" rel="noopener">在新分頁開啟完整 PDF ↗</a>
+            </div>
+            <div class="card-content">
+                <h3 class="project-title">「我的日常我來修」生活創生平台提案</h3>
+                <div class="tech-tags">
+                    <span class="tag">創意思考方法</span>
+                    <span class="tag">KJ法 & 心智圖</span>
+                    <span class="tag">SCAMPER</span>
+                    <span class="tag">專案企劃</span>
+                </div>
+                <p class="result">✔ 提出「我的日常我來修」平台提案，並回應評審對安全與黃牛問題的提問。</p>
+                <div class="more-body">
+                <p><strong>專案概述：</strong><br>
+                於創意思考方法課程中發想的服務平台，針對「老舊家電維修成本高、資訊零散、具備回憶價值」的痛點，結合 AI 智能診斷、零件市集與真人維修論壇，建立互助修繕生態圈，並考量了維修安全防護機制與市場防黃牛管理。</p>
+                <p><strong>創意發想與邏輯收斂過程：</strong></p>
+                <ul class="feature-list">
+                    <li><strong>決策效率與視覺化思考：</strong> 在初期面臨發散過度、難以抉擇的僵局時，運用 <strong>心智圖</strong> 作為客觀評估工具。將「義肢開發」與「資源共享平台」進行可視化比對，針對可行性與時間壓力快速做出取捨。</li>
+                    <li><strong>靈活運用 KJ 法與 SCAMPER：</strong> 為避免初期具潛力的想法被淘汰，先以 <strong>KJ 法</strong> 發散並分類所有組員提案，後續運用 <strong>SCAMPER</strong> (如「C」結合當地時蔬與校園課程) 迭代修正想法，提升專案的實質可行性。</li>
+                    <li><strong>安全與風險管控設計：</strong> 針對評審提問的「DIY 意外風險與市場機制」，規劃在流程中嵌入主動式安全攔截（當 AI 評估風險過大即終止教學並轉介店家），並採用第三方支付與實名制杜絕黃牛惡意抬價。</li>
+                </ul><div class="reflect-box"><p><strong>個人經驗：</strong>組員點子很多、遲遲難以決定時，我們靠心智圖與 KJ 法讓討論逐步收斂。</p>
+                    <p><strong>我學到的東西：</strong>KJ 法、心智圖、SCAMPER，以及主動思考風險與防護機制。</p>
+                    <p><strong>我負責的部分：</strong>負責簡報中兩頁：（1）「創意思考發源地：產線紀錄」——整理課堂討論的原始紀錄（心智圖、KJ 法分類、便利貼與分析矩陣），呈現點子如何從發散一步步收斂；
+                        （2）「跨組診斷與修復矩陣」——將同儕與評審指出的缺點（DIY 意外風險、黃牛哄抬）逐一對應修補動作（主動式安全攔截、第三方支付與實名制）。</p>
+                        <p><strong>我的反思：</strong>只發散不收斂，再好的點子也會被時間耗掉。</p>
+                        <p><strong>下次我會怎麼做：</strong>討論前先訂好決策標準（可行性、時間、資源），並設定發散的時間上限，時間到就用評分或投票收斂。</p></div></div>
+            </div>
+        </div>
+
+        <!-- 黑客松專案 -->
+        <div class="case-study-card">
+            <div class="card-visual" style="padding: 0; overflow: hidden; background: #333;">
+                <iframe src="苗青_一三一三final.pdf" loading="lazy" title="專案簡報 PDF" width="100%" height="450px" style="border: none; border-radius: 8px 0 0 8px;">
+                    您的瀏覽器不支援直接預覽 PDF，請下載檔案。
+                </iframe>
+                <a class="pdf-link" href="苗青_一三一三final.pdf" target="_blank" rel="noopener">在新分頁開啟完整 PDF ↗</a>
+            </div>
+            <div class="card-content">
+                <h3 class="project-title">低成本防路殺預警系統 (一三一三亮晶晶)</h3>
+                <div class="tech-tags">
+                    <span class="tag">黑客松競賽</span>
+                    <span class="tag">IoT 感測應用</span>
+                    <span class="tag">專案發表</span>
+                    <span class="tag">永續發展 (SDGs)</span>
+                </div>
+                <p class="result">✔ 團隊進入決選（未得名），我擔任報告者並回答評審提問。</p>
+                <div class="more-body">
+                <p><strong>專案概述：</strong><br>
+                參與「苗青創想家 黑客松競賽」，針對苗栗縣高居全國第二的野生動物路殺問題，團隊提出結合雙向紅外線感測器與現有路牌升級的「主動式即時警示」硬體解決方案。</p>
+                <p><strong>核心技術與個人表現：</strong></p>
+                <ul class="feature-list">
+                    <li><strong>防誤判雙感測機制：</strong> 設計 A、B 雙點位感測器，僅當動物按特定順序靠近馬路時才觸發警示，啟動路邊定向 LED 燈閃爍 15 秒強迫駕駛減速。</li>
+                    <li><strong>低成本與光害控制：</strong> 估算單一設備硬體成本約 1,500 元內，且燈光採定向遮罩設計僅面向車道，以減少對周邊的干擾。</li>
+                    <li><strong>公眾演說與評審問答：</strong> 擔任本專案的報告者，負責向台下評審與觀眾闡述專案核心價值，並回答評審提問。團隊進入決選但未得名，這次經驗讓我看見自己的不足。</li>
+                </ul><div class="reflect-box"><p><strong>個人經驗：</strong>第一次在評審面前報告，並直接面對現場問答。</p>
+                    <p><strong>我學到的東西：</strong>公眾演說、如何把技術方案說清楚，以及從成本角度評估方案。</p>
+                    <p><strong>我負責的部分：</strong>擔任報告者，向評審說明專案價值、雙感測機制、成本與光害控制，並負責 Q&A 回應。</p>
+                    <p><strong>我的反思：</strong>問答時容易忘記問題，臨場也需要快速組織答案與用詞，這是我最需要加強的地方。</p>
+                    <p><strong>下次我會怎麼做：</strong>事前整理可能的 Q&A 並實際演練；答題時先簡短複誦問題、必要時記下重點，再依「結論、理由、補充」的順序回答。</p></div></div>
+            </div>
+        </div>
+
+        <!-- 企業訪談專案 -->
+        <div class="case-study-card">
+            <div class="card-visual" style="padding: 0; overflow: hidden; background: #333;">
+                <iframe src="管理學企業訪談簡報.pdf" loading="lazy" title="專案簡報 PDF" width="100%" height="450px" style="border: none; border-radius: 8px 0 0 8px;">
+                    您的瀏覽器不支援直接預覽，請下載檔案。
+                </iframe>
+                <a class="pdf-link" href="管理學企業訪談簡報.pdf" target="_blank" rel="noopener">在新分頁開啟完整 PDF ↗</a>
+            </div>
+            <div class="card-content">
+                <h3 class="project-title">企業訪談-Arçelik Hitachi 企業營運與市場策略分析</h3>
+                <div class="tech-tags">
+                    <span class="tag">企業訪談</span>
+                    <span class="tag">商業策略分析</span>
+                    <span class="tag">團隊分工</span>
+                    <span class="tag">SWOT / 五力分析</span>
+                </div>
+                <p class="result">✔ 在多家企業婉拒後，成功訪談 Arçelik Hitachi 北部營業處處長並完成分析報告。</p>
+                <div class="more-body">
+                <p><strong>專案概述：</strong><br>
+                於管理學課程中，主動聯繫並實地訪談阿奇立克日立家電（中壢技術中心）北部營業處處長。探討企業在市場中的競爭位勢、核心服務架構及其差異化優勢，並將實務經驗轉化為商業分析報告。</p>
+                <p><strong>團隊協作與分析貢獻：</strong></p>
+                <ul class="feature-list">
+                    <li><strong>核心企劃與執行：</strong> 負責團隊的訪談動機發想、聯絡受訪者及實地訪談執行。在面對多家企業婉拒的困難下，持續接洽並成功敲定日立家電主管訪談。</li>
+                    <li><strong>商業模式剖析：</strong> 負責撰寫「企業簡介、訪談問題與結論」，將訪談中獲取的實務資訊，轉化為具體的商業洞察（如：外商品牌的決策速度挑戰、以服務品質取代價格紅海競爭的策略）。</li>
+                    <li><strong>跨部門溝通學習：</strong> 透過訪談深入了解企業如何創造「良性競爭」、提供「立足點平等」的資源配置，以及面對人力流動時的管理哲學，將課堂管理理論與企業實務相互對照。</li>
+                </ul><div class="reflect-box"><p><strong>個人經驗：</strong>多家企業婉拒後仍持續接洽，最終成功訪問到日立家電的主管。</p>
+                    <p><strong>我學到的東西：</strong>SWOT 與五力分析、將管理學理論對照企業實務，以及主動接洽的方法。</p>
+                    <p><strong>我負責的部分：</strong>訪談動機發想、聯絡受訪者、實地訪談，並撰寫企業簡介、訪談問題與結論。</p>
+                    <p><strong>我的反思：</strong>被拒絕是常態，調整說法並持續嘗試，才有機會突破。</p>
+                    <p><strong>下次我會怎麼做：</strong>一開始就同時向多家企業發信，附上清楚的訪談目的與時間需求，並預留備案名單，降低時程風險。</p></div></div>
+            </div>
+        </div>
+                
+        <!-- ================= 領導與社群經歷 ================= -->
+        <h2 id="leadership" class="section-title">協作與社群經歷</h2>
+
+        <!-- 系學會與活動企劃 -->
+        <div class="case-study-card">
+            <div class="card-visual">
+                <img loading="lazy" decoding="async" src="六系聯合迎新.jpg" alt="六系聯合迎新活動照片" class="clickable-img" onclick="openModal(this)">
+            </div>
+            <div class="card-content">
+                <h3 class="project-title">系學會執行秘書與跨系活動統籌</h3>
+                <div class="tech-tags">
+                    <span class="tag">活動企劃</span>
+                    <span class="tag">團隊協作</span>
+                    <span class="tag">跨部門溝通</span>
+                    <span class="tag">危機處理</span>
+                </div>
+                <p class="result">✔ 擔任系學會執行秘書與班代，並參與近 250 人的六系聯合迎新。</p>
+                <div class="more-body">
+                <p><strong>專案概述：</strong><br>
+                大學期間積極投入系學會運作，並參與跨科系之大型百人活動籌備。透過不同職務的歷練，練習專案管理、資源協調與文書處理。</p>
+                <p><strong>核心貢獻與軟實力展現：</strong></p>
+                <ul class="feature-list">
+                    <li><strong>六系聯合迎新 (近 250 人規模)：</strong> 擔任闖關活動「船長密令」之關主，負責引導新生團隊合作與氣氛帶動。</li>
+                    <li><strong>行政與文書管理：</strong> 負責系員大會與活動構想之「會議紀錄」，確保團隊決策被正確追蹤；並實際參與特約商店洽談，撰寫對外公關講稿，練習對外溝通。</li>
+                    <li><strong>多元專案支援：</strong> 全程參與系學會期初/期末會議、六系迎新培訓，並擔任二手書拍賣工作人員，擔任機動支援。</li>
+                </ul><div class="reflect-box"><p><strong>個人經驗：</strong>從行政幕後到現場關主，我看見一場活動背後有多少人與細節在運作。</p>
+                    <p><strong>我學到的東西：</strong>行政與文書處理、跨部門溝通，以及服務與帶領他人的態度。</p>
+                    <p><strong>我負責的部分：</strong>執行秘書：會議紀錄、特約商店洽談與公關講稿、二手書拍賣支援；迎新「船長密令」關主；班代：訊息傳達與意見彙整。</p>
+                    <p><strong>我的反思：</strong>資訊沒有說清楚、也沒有留下紀錄，就容易產生誤會。</p>
+                    <p><strong>下次我會怎麼做：</strong>會議結束當天整理紀錄，標出負責人與期限並發送給所有人，下次會議開頭先回顧上次的待辦事項。</p></div></div>
+            </div>
+        </div>
+
+        <!-- 多媒體設計 短影音成癮 -->
+        <div class="case-study-card">
+            <div class="card-visual" style="padding: 0; overflow: hidden; background: #333;">
+                <iframe src="多媒體紅舞鞋.pdf" loading="lazy" title="專案簡報 PDF" width="100%" height="450px" style="border: none; border-radius: 8px 0 0 8px;">
+                    您的瀏覽器不支援直接預覽 PDF，請下載檔案。
+                </iframe>
+                <a class="pdf-link" href="多媒體紅舞鞋.pdf" target="_blank" rel="noopener">在新分頁開啟完整 PDF ↗</a>
+            </div>
+            <div class="card-content">
+                <h3 class="project-title"> 《紅舞鞋》多媒體創意錄音 </h3>
+                <div class="tech-tags">
+                    <span class="tag">多媒體科技</span>
+                    <span class="tag">團隊分工</span>
+                    <span class="tag">影音後製 (Audacity)</span>
+                </div>
+                <p class="result">✔ 完成《紅舞鞋》劇本改編與創意錄音，我負責專案統籌與劇本編輯。</p>
+                <div class="more-body">
+                <p><strong>專案概述：</strong><br>
+                於多媒體科技概論課程中，以安徒生的《紅舞鞋》童話故事進行劇本改編，與組員一同完成創意錄音。</p>
+                <p><strong>核心貢獻與團隊協作：</strong></p>
+                <ul class="feature-list">
+                    <li><strong>專案統籌與分工管理：</strong> 擔任專案統籌與劇本編輯，依據組員專長（配音、音效蒐集、後製剪輯）進行工作分配，避免職責重疊，讓專案順利推進。</li>
+                    <li><strong>劇本改編與資源規劃：</strong> 負責將童話故事改編以符合專案主題，預先規劃所需音效節點，並尋找開源音效素材提供給後製組員，協助後製組員。</li>
+                    <li><strong>危機處理與溝通反思：</strong> 在專案執行過程中，遇到組員使用舊版劇本錄音的版本控制問題。透過即時溝通與調整後製策略（保留舊劇本台詞但維持新版格式），在時間壓力下完成了專案，深刻體認到跨部門溝通與版本確認的重要性。</li>
+                </ul><div class="reflect-box"><p><strong>個人經驗：</strong>把童話改編成劇本，再與組員一起把文字做成聲音作品。</p>
+                    <p><strong>我學到的東西：</strong>專案分工、版本管理觀念、Audacity 後製，以及時間壓力下的溝通。</p>
+                    <p><strong>我負責的部分：</strong>專案統籌與劇本編輯、依專長分配配音／音效／後製、預先規劃音效節點並找開源素材。</p>
+                    <p><strong>我的反思：</strong>組員使用舊版劇本錄音，我們靠調整後製策略補救，也讓我意識到版本確認要在一開始就說清楚。</p>
+                    <p><strong>下次我會怎麼做：</strong>專案初期建立單一共用劇本檔與版本命名規則（如 v1、v2），每次修改都通知全員並請對方回覆確認。</p></div></div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer id="contact">
+        <h2>聯絡我</h2>
+        <p>若您對我的經歷或專案有任何想了解的地方，歡迎與我聯繫，謝謝您撥冗閱讀。</p>
+        <div class="contact-links">
+            <a href="mailto:agu101053@example.com">✉️ agu101053@example.com</a>
+            <a href="https://github.com/Felicia1053" target="_blank" rel="noopener">💻 GitHub</a>
+            <a href="https://www.linkedin.com/in/珮珊-曾-606497382" target="_blank" rel="noopener">🔗 LinkedIn</a>
+        </div>
+        <small>© 2026 曾珮珊</small>
+    </footer>
+
+    <!-- 圖片放大的 Modal 結構 -->
+    <div id="imageModal" class="modal" role="dialog" aria-modal="true" aria-label="圖片放大檢視">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="expandedImg">
+        <div id="caption"></div>
+    </div>
+
+    <script>
+        // Modal 互動腳本
+        var modal = document.getElementById("imageModal");
+        var modalImg = document.getElementById("expandedImg");
+        var captionText = document.getElementById("caption");
+
+        function openModal(imgElement) {
+            modal.style.display = "block";
+            modalImg.src = imgElement.src;
+            captionText.innerHTML = imgElement.alt;
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // 點擊 Modal 背景也能關閉
+        modal.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Esc 關閉圖片放大
+        document.addEventListener("keydown", function(e){ if (e.key === "Escape") closeModal(); });
+
+        // 側邊時間軸：Top / Bottom 與捲動標示
+        var links = Array.prototype.slice.call(document.querySelectorAll("#sidenav a"));
+        links.forEach(function(a){
+            a.addEventListener("click", function(e){
+                var t = a.dataset.t;
+                if (t === "top" || t === "bottom") {
+                    e.preventDefault();
+                    window.scrollTo({ top: t === "top" ? 0 : document.documentElement.scrollHeight, behavior: "smooth" });
+                }
+            });
+        });
+        var ids = ["about","experience","software","data-ai","design","leadership"];
+        function spy(){
+            var cur = window.scrollY < 80 ? "top" : "about";
+            ids.forEach(function(id){ var el = document.getElementById(id); if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.35) cur = id; });
+            if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) cur = "bottom";
+            links.forEach(function(a){ a.classList.toggle("active", a.dataset.t === cur); });
+        }
+        window.addEventListener("scroll", spy, { passive: true });
+        window.addEventListener("resize", spy);
+        spy();
+    </script>
+</body>
+</html>
